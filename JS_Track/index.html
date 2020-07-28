@@ -1,0 +1,59 @@
+<html>
+    <header>
+        <title>Personal Expenses</title>
+        <!-- <link href="./css/index.css" rel="stylesheet"> -->
+        <script
+			defer
+			src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+			integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+			crossorigin="anonymous"
+		></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+    </header>
+    <body>
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1">Xpers</span>
+            <span class="navbar-brand mb-0 h1" id="totalExp">0</span>
+        </nav>
+        <div class="container-fluid bg-light" style="min-height: 100vh">
+            <div class="container">
+                <div class="jumbotron mt-4">
+                    <div class="input-group mb-3">
+                        <input
+                            type="text"
+                            id = 'inpEl'
+                            class="form-control"
+                            placeholder="Amount spent"
+                            aria-label="Amount spent"
+                            aria-describedby="spent in rupee"
+                        />
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="spent in rupee">₹</span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="spent at">@</span>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id = 'inpEl2'
+                            placeholder="spent On"
+                            aria-label="spent On"
+                            aria-describedby="spent at"
+                        />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button" id="button-addon2">Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <ul class="list-group" id="desc">
+                    </ul>
+                </div>
+            </div>
+    </body>
+    <script type="text/javascript" src="./JS/index.js"></script>
+</html>

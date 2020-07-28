@@ -1,0 +1,23 @@
+.site-header {
+    background-color: #1bbc9b;
+    height: 100vh;
+    color: #edf5f3;
+    font-family: nanospace;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.site-header-content {
+    margin-left: 10px;
+}
+
+body {
+    margin : 0px
+}
