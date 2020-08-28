@@ -1,3 +1,4 @@
+debugger;
 const inpEl = document.querySelector("#inpEl");
 const inpDescEl = document.querySelector("#inpDescEl");
 const btnEl = document.querySelector("#button-addon2");
@@ -8,19 +9,17 @@ updateTotal();
 
 let expenseArray = [];
 
-btnEl.addEventListener('click',handleSum,false);
+btnEl.addEventListener('click',handleSum,true);
 document.addEventListener("keypress", function (event) {
     if (event.keyCode === 13 || event.which === 13) {
         handleSum();
     }
-  });
+});
 
 function deleteItem(dateval,amount) {
     const newarr = expenseArray.filter(exp => exp.moment.valueOf() !== dateval);
     renderDesc(newarr);
-    console.log(amount);
     totalExp -= amount;
-    console.log(totalExp);
     updateTotal();
 }
 
@@ -62,13 +61,13 @@ function handleSum () {
         obj.amount = txtEl;
         obj.moment = new Date();
 
-        totalExp = totalExp + txtEl;
+        totalExp += txtEl;
         updateTotal();
         expenseArray.push(obj);
 
         renderDesc(expenseArray);
-        inpEl.value = "";
-        inpDescEl.value = "";
+        inpDescEl.value = '';
+        inpEl.value = '';
     }
     else {
         alert('Enter all fields properly')
