@@ -1,17 +1,38 @@
+const inpEl = document.querySelector("#inpEl");
+const inpDescEl = document.querySelector("#inpDescEl");
 const btnEl = document.querySelector("#button-addon2");
+const expEl = document.querySelector("#totalExp");
+const descEl = document.querySelector('#desc')
 let totalExp = 0;
-const arr = [];
-btnEl.addEventListener('click',handleSum,true);
+updateTotal();
 
-function deleteItem(dateval) {
-    const newarr = arr.filter(exp => exp.moment.valueOf() !== dateval);
+let expenseArray = [];
+
+btnEl.addEventListener('click',handleSum,false);
+document.addEventListener("keypress", function (event) {
+    if (event.keyCode === 13 || event.which === 13) {
+        handleSum();
+    }
+  });
+
+function deleteItem(dateval,amount) {
+    const newarr = expenseArray.filter(exp => exp.moment.valueOf() !== dateval);
     renderDesc(newarr);
+    console.log(amount);
+    totalExp -= amount;
+    console.log(totalExp);
+    updateTotal();
 }
 
+
 function renderDesc (arr) {
-    const descp = arr.map(elm => createEl(elm)).join('');
-    const descEl = document.querySelector('#desc')
-    descEl.innerHTML = descp;
+    const descp = arr.map(elm => createEl(elm));
+    descEl.innerHTML = descp.join("");
+    expenseArray = arr;
+}
+
+function updateTotal() {
+    expEl.textContent = `Total : ${totalExp} ₹`;
 }
 
 function createEl ({desc,amount,moment}) {
@@ -24,7 +45,7 @@ function createEl ({desc,amount,moment}) {
         <span class="px-5">
         ${amount} ₹
         </span>
-        <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteItem(${moment.valueOf()})">
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteItem(${moment.valueOf()},${amount})">
             <i class="fas fa-trash-alt"></i>
         </button>
     </div>
@@ -32,18 +53,24 @@ function createEl ({desc,amount,moment}) {
 }
 
 function handleSum () {
-    const inpEl = document.querySelector("#inpEl");
-    let txtEl = inpEl.value;
-    const inpEl2 = document.querySelector("#inpEl2");
-    let txtEl2 = inpEl2.value;
-    txtEl = parseInt(txtEl,10);
     const obj = {};
-    obj.desc = txtEl2;
-    obj.amount = txtEl;
-    obj.moment = new Date;
-    arr.push(obj);
-    totalExp = totalExp + txtEl;
-    const expEl = document.querySelector("#totalExp");
-    expEl.textContent = `Total : ${totalExp}`;
-    renderDesc(arr);
+    let txtEl = inpEl.value;
+    let txtEl2 = inpDescEl.value;
+    txtEl = parseInt(txtEl,10);
+    if (txtEl2 !== "" && !isNaN(txtEl) && txtEl > 0) {
+        obj.desc = txtEl2;
+        obj.amount = txtEl;
+        obj.moment = new Date();
+
+        totalExp = totalExp + txtEl;
+        updateTotal();
+        expenseArray.push(obj);
+
+        renderDesc(expenseArray);
+        inpEl.value = "";
+        inpDescEl.value = "";
+    }
+    else {
+        alert('Enter all fields properly')
+    }
 }
